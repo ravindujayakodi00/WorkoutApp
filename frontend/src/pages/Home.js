@@ -3,6 +3,7 @@ import { useWorkoutsContext } from '../hooks/useWorkoutContext'
 //components
 import WorkoutDetails from '../components/WorkoutDetails'
 import WorkoutForm from '../components/WorkoutForm'
+import UpdateForm from '../components/UpdateForm'
 
 const Home = () => {
     const { workouts, dispatch } = useWorkoutsContext()
@@ -27,7 +28,12 @@ const Home = () => {
                 <WorkoutDetails key={workout._id} workout={workout}/>
             ))}
         </div>
+        
+        <UpdateForm />
         <WorkoutForm />
+
+
+
       </div>
     )
   }
