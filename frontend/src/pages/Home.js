@@ -1,6 +1,5 @@
 import { useEffect} from 'react'
 import { useWorkoutsContext } from '../hooks/useWorkoutContext'
-import { Link } from 'react-router-dom'
 //components
 import WorkoutForm from '../components/WorkoutForm'
 import WorkoutDetails from '../components/WorkoutDetails'
