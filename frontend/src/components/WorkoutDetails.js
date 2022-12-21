@@ -4,6 +4,7 @@ import { useWorkoutsContext } from '../hooks/useWorkoutContext'
 import { useNavigate } from 'react-router-dom'
 import { FaEdit} from 'react-icons/fa'
 import { FaTrashAlt } from 'react-icons/fa'
+import  FormatDistancetToNow  from 'date-fns/formatDistanceToNow'
 
 const WorkoutDetails = ({ workout }) => {
     const { dispatch } = useWorkoutsContext();
@@ -28,8 +29,8 @@ const WorkoutDetails = ({ workout }) => {
         <h4>{workout.title}</h4>
         <p><strong>Load (kg): </strong>{workout.load}</p>
         <p><strong>Reps: </strong>{workout.reps}</p>
-        <p>{workout.createdAt}</p>
-        <span onClick={handleDelete}><FaTrashAlt/></span>
+        <p>{FormatDistancetToNow(new Date(workout.createdAt), {addSuffix: true})}</p>
+        <span className='delete' onClick={handleDelete}><FaTrashAlt/></span>
         <Link to={`/${workout._id}`}>
             <span className='update'><FaEdit/></span>
         </Link>

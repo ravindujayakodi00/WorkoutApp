@@ -117,3 +117,15 @@ div.error {
 .update {
   margin-right: 40px;
 }
+
+input.error {
+  border: 1px solid var(--error);
+}
+
+.delete:hover {
+  color: rgb(206, 79, 79);
+}
+
+.update:hover {
+  color: rgb(148, 162, 26);
+}
