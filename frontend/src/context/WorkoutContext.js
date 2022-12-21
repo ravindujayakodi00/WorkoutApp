@@ -8,6 +8,11 @@ export const workoutReducer = (state, action) => {
             return {
                 workouts: action.payload
             }
+        //get a single workout
+        case 'GET_WORKOUT':
+            return {   
+                workouts: state.workouts.find((workout) => workout._id === action.payload._id)
+            }    
         case 'CREATE_WORKOUT':
             return {
                 workouts: [action.payload, ...state.workouts]
@@ -16,9 +21,9 @@ export const workoutReducer = (state, action) => {
             return {
                 workouts: state.workouts.filter((workout) => workout._id !== action.payload._id)
             }
-        case 'UPDATE_PRODUCT':
+        case 'UPDATE_WORKOUT':
             return {
-                products: state.products.map((product) => product._id === action.payload._id ? action.payload : product)
+                workouts: state.workouts.map((workout) => workout._id === action.payload._id ? action.payload : workout)
             }  
         default:
             return state;
