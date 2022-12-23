@@ -11,4 +11,4 @@ export const useWorkoutsContext = () => {
     }
 
     return context;
-}
+} 
