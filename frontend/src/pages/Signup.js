@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSignup } from '../hooks/useSignup';
 
 const Signup = () => {
     const [firstName, setFirstName] = useState('');
@@ -6,11 +7,12 @@ const Signup = () => {
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const {signup, error, isLoading} = useSignup()
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault(); 
 
-        console.log(firstName, lastName, phone, email, password );
+        await signup(firstName,lastName,phone,email,password)
     }
 
     return(
@@ -20,39 +22,42 @@ const Signup = () => {
             <label>First name: </label>
             <input
                 type="text"
-                value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
+                value={firstName}
             />
 
             <label>Last name: </label>
             <input
                 type="text"
-                value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
+                value={lastName}
             />
 
             <label>Phone: </label>
             <input
                 type="text"
-                value={phone}
                 onChange={(e) => setPhone(e.target.value)}
+                value={phone}
             />
 
             <label>Email: </label>
             <input 
                 type="email" 
-                value={email} 
-                onChange={(e) => setEmail(e.target.value)} 
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}  
             />
 
             <label>Password: </label>
             <input
                 type="password"
-                value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                value={password}
             />
 
-            <button type="submit">Sign up</button>
+            <button disabled = {isLoading} type="submit">Sign up</button>
+
+            {error && <div className='error'>{error}</div>}
+
         </form>
     )
 }
