@@ -4,6 +4,7 @@ import { useAuthContext } from './useAuthContext';
 export const useSignup = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(null)
+    const [success, setSuccess] = useState(null)
     const {dispatch} = useAuthContext()
   
     const signup = async (firstName,lastName,phone,email,password) => {
@@ -30,8 +31,12 @@ export const useSignup = () => {
             dispatch({type: 'LOGIN', payload: json})
 
             setIsLoading(false)
+
+            setSuccess('You have successfully signed up!')
+
+
         } 
     }
     
-    return {signup, error, isLoading}
+    return {signup, error, isLoading, success}
 }

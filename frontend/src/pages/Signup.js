@@ -7,7 +7,7 @@ const Signup = () => {
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const {signup, error, isLoading} = useSignup()
+    const {signup, error, isLoading , success} = useSignup()
 
     const handleSubmit = async (e) => {
         e.preventDefault(); 
@@ -57,6 +57,7 @@ const Signup = () => {
             <button disabled = {isLoading} type="submit">Sign up</button>
 
             {error && <div className='error'>{error}</div>}
+            {success && <div className='success'>{success}</div>}
 
         </form>
     )

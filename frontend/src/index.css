@@ -102,6 +102,15 @@ div.error {
   margin: 20px 0;
 }
 
+div.success {
+  padding: 10px;
+  background: #d5e4b7;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  border-radius: 4px;
+  margin: 20px 0;
+}
+
 .cancel {
   background: rgb(208, 76, 76);
   border: 1px solid #ccc;
@@ -138,6 +147,17 @@ nav {
 
 nav a {
   margin-left: 10px;
+}
+
+nav button {
+  background: #fff;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  padding: 6px 10px;
+  font-family: "Poppins";
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
 form.signup, form.login {
