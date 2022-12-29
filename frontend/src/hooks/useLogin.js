@@ -32,7 +32,7 @@ export const useLogin = () => {
 
             setIsLoading(false)
 
-            setSuccess('You have successfully signed up!')
+            setSuccess('You have successfully logged in!')
 
 
         } 

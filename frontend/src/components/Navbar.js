@@ -13,6 +13,7 @@ const Navbar = () => {
     logout();
   }
 
+
   return (
     <header>
       <div className="container">

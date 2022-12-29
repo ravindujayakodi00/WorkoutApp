@@ -4,11 +4,13 @@ import { useWorkoutsContext } from '../hooks/useWorkoutContext'
 import { Link } from 'react-router-dom'
 import * as React from 'react';
 import WorkoutDetails from '../components/WorkoutDetails'
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const UpdateForm = () => {
   
   const {workouts,dispatch} = useWorkoutsContext();
   const {id} = useParams();
+  const { user } = useAuthContext()
 
   const navigate = useNavigate();
 
@@ -20,7 +22,11 @@ const UpdateForm = () => {
 
   useEffect(() => {
       const  fetchWorkouts = async () => {
-          const response = await fetch(`/api/workouts/${id}`)
+          const response = await fetch(`/api/workouts/${id}` , {
+              headers: {
+                'Authorization': `Bearer ${user.token}`
+              }
+          })
           const json = await response.json()
 
           if (response.ok) {
@@ -30,16 +36,27 @@ const UpdateForm = () => {
             
           }
       }
-      fetchWorkouts()
-  },[id])
+
+      if(user){
+          fetchWorkouts();
+      }
+        fetchWorkouts()
+  },[id, user])
 
   const handleSubmit = async (e) => {
       e.preventDefault();
 
+      if(!user) {
+          setError('You must be Logged in')
+          return
+      }
+
       const response = await fetch(`/api/workouts/${id}`,{
           method: 'PATCH',
           headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${user.token}`
+
           },
           body: JSON.stringify({
               title,
@@ -55,6 +72,7 @@ const UpdateForm = () => {
       }
 
       if (response.ok) {
+          console.log("Updated SucessFully")
           dispatch({type: 'UPDATE_WORKOUT', payload: json})                     
       }
 
